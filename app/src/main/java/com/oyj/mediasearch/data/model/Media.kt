@@ -2,14 +2,14 @@ package com.oyj.mediasearch.data.model
 
 sealed class Media(
     open val thumbnail: String,
-    open val dateTime: Int,
+    open val dateTime: String,
     open val mediaUrl: String,
     open val sources: String,
 )
 
 data class Image(
     override val thumbnail: String,
-    override val dateTime: Int,
+    override val dateTime: String,
     override val mediaUrl: String,
     override val sources: String,
     val imgUrl: String,
@@ -22,7 +22,7 @@ data class Image(
 
 data class Video(
     override val thumbnail: String,
-    override val dateTime: Int,
+    override val dateTime: String,
     override val mediaUrl: String,
     override val sources: String,
     val title: String,
