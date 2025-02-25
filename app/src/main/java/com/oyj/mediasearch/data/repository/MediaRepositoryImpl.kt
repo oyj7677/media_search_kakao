@@ -7,7 +7,7 @@ class MediaRepositoryImpl(
     private val mediaRemoteSource: MediaRemoteSource,
 ) : MediaRepository {
 
-    override fun searchMedia(keyword: String): List<Media> {
-        return mediaRemoteSource.searchMedia(keyword)
+    override fun searchImage(keyword: String): List<Media> {
+        return mediaRemoteSource.searchImage(keyword)
     }
 }

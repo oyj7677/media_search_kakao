@@ -39,13 +39,13 @@ class SearchViewModelTest {
     }
 
     @Test
-    fun `searchMedia()_성공_케이스`() {
+    fun `searchImage()_성공_케이스`() {
         // Given : 사용자가 입력한 검색어를 세팅한다.
         val keyword = "노머스"
         searchViewModel.setQuery(keyword)
 
-        // When : 검색어를 기반으로 미디어 데이터 호출을 한다.
-        searchViewModel.searchMedia()
+        // When : 검색어를 기반으로 사진 데이터 호출을 한다.
+        searchViewModel.searchImage()
         val expect = listOf(
             MediaImage(
                 thumbnail = "https://search1.kakaocdn.net/argon/130x130_85_c/59SRPcaiRjj",

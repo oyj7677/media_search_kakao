@@ -8,7 +8,7 @@ import kotlinx.serialization.json.Json
 import java.io.File
 
 class FakeMediaRemoteSourceImpl: MediaRemoteSource {
-    override fun searchMedia(keyword: String): List<Media> {
+    override fun searchImage(keyword: String): List<Media> {
         val response = File("src/test/java/com/oyj/mediasearch/response/searchImage_노머스_Response.json").readText()
         val resultKakaoImageDto = Json.decodeFromString<KakaoImageDto>(response)
         return resultKakaoImageDto.toMediaImageList()
