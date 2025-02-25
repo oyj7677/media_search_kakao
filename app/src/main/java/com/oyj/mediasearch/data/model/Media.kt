@@ -7,7 +7,7 @@ sealed class Media(
     open val sources: String,
 )
 
-data class Image(
+data class MediaImage(
     override val thumbnail: String,
     override val dateTime: String,
     override val mediaUrl: String,
@@ -20,7 +20,7 @@ data class Image(
     sources = sources,
 )
 
-data class Video(
+data class MediaVideo(
     override val thumbnail: String,
     override val dateTime: String,
     override val mediaUrl: String,
