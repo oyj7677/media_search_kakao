@@ -1,15 +1,24 @@
 package com.oyj.mediasearch.data.dto.image
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Document(
+    @SerialName("collection")
     val collection: String,
+    @SerialName("datetime")
     val datetime: String,
-    val display_sitename: String,
-    val doc_url: String,
+    @SerialName("display_sitename")
+    val displaySiteName: String,
+    @SerialName("doc_url")
+    val docUrl: String,
+    @SerialName("height")
     val height: Int,
-    val image_url: String,
-    val thumbnail_url: String,
+    @SerialName("image_url")
+    val imageUrl: String,
+    @SerialName("thumbnail_url")
+    val thumbnailUrl: String,
+    @SerialName("width")
     val width: Int
 )

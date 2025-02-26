@@ -12,11 +12,11 @@ data class KakaoImageDto(
 fun KakaoImageDto.toMediaImageList(): List<MediaImage> {
     return documents.map {
         MediaImage(
-            thumbnail = it.thumbnail_url,
+            thumbnail = it.thumbnailUrl,
             dateTime = it.datetime,
-            mediaUrl = it.image_url,
-            sources = it.display_sitename,
-            imgUrl = it.image_url
+            mediaUrl = it.imageUrl,
+            sources = it.displaySiteName,
+            imgUrl = it.imageUrl
         )
     }
 }

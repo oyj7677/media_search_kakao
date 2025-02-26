@@ -1,10 +1,14 @@
 package com.oyj.mediasearch.data.dto.image
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class Meta(
-    val is_end: Boolean,
-    val pageable_count: Int,
-    val total_count: Int
+    @SerialName("is_end")
+    val isEnd: Boolean,
+    @SerialName("pageable_count")
+    val pageableCount: Int,
+    @SerialName("total_count")
+    val totalCount: Int
 )
