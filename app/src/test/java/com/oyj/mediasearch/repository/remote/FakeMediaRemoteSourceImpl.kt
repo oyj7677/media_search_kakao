@@ -6,7 +6,6 @@ import com.oyj.mediasearch.data.dto.video.KakaoVideoDto
 import com.oyj.mediasearch.data.dto.video.toMediaVideoList
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.repository.remote.MediaRemoteSource
-import com.oyj.mediasearch.network.KakaoApiService
 import kotlinx.serialization.json.Json
 import java.io.File
 
