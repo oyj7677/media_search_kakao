@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import coil3.compose.AsyncImage
@@ -21,7 +22,6 @@ import com.oyj.mediasearch.R
 @Composable
 fun MediaCard(
     imgUrl: String,
-    contentDescription: String,
     date: String,
     mediaMark: @Composable BoxScope.() -> Unit = {},
     bookMark: @Composable BoxScope.() -> Unit = {},
@@ -37,7 +37,7 @@ fun MediaCard(
         ) {
             AsyncImage(
                 model = imgUrl,
-                contentDescription = contentDescription,
+                contentDescription = stringResource(id = R.string.text_media_card_content_description),
                 contentScale = ContentScale.Fit,
                 placeholder = painterResource(R.drawable.ic_launcher_foreground),
                 modifier = Modifier
@@ -64,7 +64,6 @@ private fun MediaCardPreview() {
     val imgUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
     MediaCard(
         imgUrl = imgUrl,
-        contentDescription = "설명글 입니다.",
         date = "2021-10-10",
         mediaMark = {
             Text(
