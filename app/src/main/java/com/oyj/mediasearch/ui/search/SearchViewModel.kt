@@ -16,11 +16,18 @@ class SearchViewModel(
     private val _imageList = MutableStateFlow(emptyList<Media>())
     val imageList: StateFlow<List<Media>> = _imageList
 
+    private val _videoList = MutableStateFlow(emptyList<Media>())
+    val videoList: StateFlow<List<Media>> = _videoList
+
     fun setQuery(keyword: String) {
         _query.value = keyword
     }
 
     fun searchImage() {
         _imageList.value = repository.searchImage(query.value)
+    }
+
+    fun searchVideo() {
+        _videoList.value = repository.searchVideo(query.value)
     }
 }

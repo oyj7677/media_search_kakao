@@ -6,4 +6,8 @@ class MediaRemoteSourceImpl : MediaRemoteSource {
     override fun searchImage(keyword: String): List<Media> {
         return emptyList()
     }
+
+    override fun searchVideo(keyword: String): List<Media> {
+        return emptyList()
+    }
 }
