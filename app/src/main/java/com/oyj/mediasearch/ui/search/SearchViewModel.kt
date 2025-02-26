@@ -19,25 +19,16 @@ class SearchViewModel @Inject constructor(
     private val _query = MutableStateFlow("")
     val query: StateFlow<String> = _query
 
-    private val _imageList = MutableStateFlow(emptyList<Media>())
-    val imageList: StateFlow<List<Media>> = _imageList
-
-    private val _videoList = MutableStateFlow(emptyList<Media>())
-    val videoList: StateFlow<List<Media>> = _videoList
+    private val _mediaList = MutableStateFlow(emptyList<Media>())
+    val mediaList: StateFlow<List<Media>> = _mediaList
 
     fun setQuery(keyword: String) {
         _query.value = keyword
     }
 
-    fun searchImage() {
+    fun searchMedia() {
         viewModelScope.launch(Dispatchers.IO) {
-            _imageList.value = repository.searchImage(query.value)
-        }
-    }
-
-    fun searchVideo() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _videoList.value = repository.searchVideo(query.value)
+            _mediaList.value =  repository.searchMedia(query.value)
         }
     }
 }
