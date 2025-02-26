@@ -12,7 +12,7 @@ class MediaRemoteSourceImpl @Inject constructor(
     override suspend fun searchImage(keyword: String): List<Media> {
         val response = kakaoApiService.searchImage(
             query = keyword,
-            sort = "accuracy",
+            sort = "recency",
             page = 1,
             size = 30
         )
@@ -27,7 +27,7 @@ class MediaRemoteSourceImpl @Inject constructor(
     override suspend fun searchVideo(keyword: String): List<Media> {
         val response = kakaoApiService.searchVideo(
             query = keyword,
-            sort = "accuracy",
+            sort = "recency",
             page = 1,
             size = 30
         )

@@ -1,5 +1,7 @@
 package com.oyj.mediasearch.ui.search
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oyj.mediasearch.data.model.Media
@@ -9,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import java.time.OffsetDateTime
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,9 +30,20 @@ class SearchViewModel @Inject constructor(
         _query.value = keyword
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun searchMedia() {
         viewModelScope.launch(Dispatchers.IO) {
-            _mediaList.value =  repository.searchMedia(query.value)
+            val response = repository.searchMedia(query.value)
+            _mediaList.value =  sortDateListDescending(response)
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun sortDateListDescending(dates: List<Media>): List<Media> {
+        val formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
+
+        return dates.sortedByDescending { media ->
+            OffsetDateTime.parse(media.dateTime, formatter)
         }
     }
 }
