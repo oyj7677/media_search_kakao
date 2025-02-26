@@ -1,12 +1,18 @@
 package com.oyj.mediasearch.ui.search
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.repository.MediaRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SearchViewModel(
+@HiltViewModel
+class SearchViewModel @Inject constructor(
     private val repository: MediaRepository
 ) : ViewModel() {
 
@@ -24,10 +30,14 @@ class SearchViewModel(
     }
 
     fun searchImage() {
-        _imageList.value = repository.searchImage(query.value)
+        viewModelScope.launch(Dispatchers.IO) {
+            _imageList.value = repository.searchImage(query.value)
+        }
     }
 
     fun searchVideo() {
-        _videoList.value = repository.searchVideo(query.value)
+        viewModelScope.launch(Dispatchers.IO) {
+            _videoList.value = repository.searchVideo(query.value)
+        }
     }
 }

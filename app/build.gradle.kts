@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -5,6 +7,12 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("kotlinx-serialization")
+}
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localProperties.load(localPropertiesFile.inputStream())
 }
 
 android {
@@ -19,6 +27,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField(
+            "String",
+            "KAKAO_REST_API_KEY",
+            localProperties.getProperty("KAKAO_REST_API_KEY"),
+        )
     }
 
     buildTypes {
@@ -39,6 +53,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -63,6 +78,7 @@ dependencies {
     implementation(libs.squareup.okhttp3.logging.interceptor)
     // retrofit
     implementation(libs.retrofit2)
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
     // coil
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
