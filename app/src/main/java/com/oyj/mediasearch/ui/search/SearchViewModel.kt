@@ -1,7 +1,5 @@
 package com.oyj.mediasearch.ui.search
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.oyj.mediasearch.data.model.Media
@@ -30,10 +28,11 @@ class SearchViewModel @Inject constructor(
         _query.value = keyword
     }
 
-    fun searchMedia() {
+    fun searchMedia(query: String) {
+        if(query.isEmpty()) return
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.searchMedia(query.value)
-            _mediaList.value =  sortDateListDescending(response)
+            val response = repository.searchMedia(query)
+            _mediaList.value = sortDateListDescending(response)
         }
     }
 
