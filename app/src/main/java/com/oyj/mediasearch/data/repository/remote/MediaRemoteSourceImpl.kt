@@ -1,45 +1,37 @@
 package com.oyj.mediasearch.data.repository.remote
 
-import com.oyj.mediasearch.data.dto.image.toMediaImageList
-import com.oyj.mediasearch.data.dto.video.toMediaVideoList
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.oyj.mediasearch.data.model.Media
+import com.oyj.mediasearch.data.paging.PagingSource
 import com.oyj.mediasearch.network.KakaoApiService
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MediaRemoteSourceImpl @Inject constructor(
     private val kakaoApiService: KakaoApiService
 ) : MediaRemoteSource {
-    override suspend fun searchImage(keyword: String): List<Media> {
-        val response = kakaoApiService.searchImage(
-            query = keyword,
-            sort = "recency",
-            page = 1,
-            size = 30
-        )
 
-        return if (response.isSuccessful) {
-            response.body()!!.toMediaImageList()
-        } else {
-            emptyList()
+    override fun pagingImage(query: String): Flow<PagingData<Media>> {
+        val pagingSourceFactory = {
+            PagingSource(
+                kakaoApiService = kakaoApiService,
+                query = query,
+                sort = "recency"
+            )
         }
-    }
-
-    override suspend fun searchVideo(keyword: String): List<Media> {
-        val response = kakaoApiService.searchVideo(
-            query = keyword,
-            sort = "recency",
-            page = 1,
-            size = 30
-        )
-
-        return if (response.isSuccessful) {
-            response.body()!!.toMediaVideoList()
-        } else {
-            emptyList()
-        }
+        return Pager(
+            config = PagingConfig(
+                pageSize = PAGE_SIZE,
+                enablePlaceholders = false,
+                maxSize = PAGE_SIZE * 3
+            ),
+            pagingSourceFactory = pagingSourceFactory
+        ).flow
     }
 
     companion object {
-        private const val TAG = "MediaRemoteSourceImpl"
+        private const val PAGE_SIZE = 100
     }
 }

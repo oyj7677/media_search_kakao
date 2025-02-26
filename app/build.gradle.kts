@@ -91,6 +91,9 @@ dependencies {
     // serialization
     implementation(libs.kotlinx.serialization.json)
 
+    // paging
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     testImplementation(libs.junit)

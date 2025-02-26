@@ -1,8 +1,9 @@
 package com.oyj.mediasearch.data.repository.remote
 
+import androidx.paging.PagingData
 import com.oyj.mediasearch.data.model.Media
+import kotlinx.coroutines.flow.Flow
 
 interface MediaRemoteSource {
-    suspend fun searchImage(keyword: String): List<Media>
-    suspend fun searchVideo(keyword: String): List<Media>
+    fun pagingImage(query: String): Flow<PagingData<Media>>
 }

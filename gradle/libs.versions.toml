@@ -17,6 +17,8 @@ coil = "3.1.0"
 navigationCompose = "2.8.7"
 hilt = "2.51.1"
 kotlinxSerializationJson = "1.8.0"
+pagingRuntimeKtx = "3.3.6"
+pagingCompose = "3.3.6"
 desugar_jdk_libs = "2.1.5"
 assertjCore = "3.22.0"
 
@@ -48,6 +50,8 @@ androidx-navigation-compose = { module = "androidx.navigation:navigation-compose
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }

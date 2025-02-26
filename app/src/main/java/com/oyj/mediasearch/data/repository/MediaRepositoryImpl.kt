@@ -1,27 +1,16 @@
 package com.oyj.mediasearch.data.repository
 
+import androidx.paging.PagingData
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.repository.remote.MediaRemoteSource
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class MediaRepositoryImpl @Inject constructor(
     private val mediaRemoteSource: MediaRemoteSource
 ) : MediaRepository {
-    override suspend fun searchMedia(keyword: String): List<Media> {
-        return coroutineScope {
-            val imageList = async {
-                mediaRemoteSource.searchImage(keyword)
-            }
-            val videoList = async {
-                mediaRemoteSource.searchVideo(keyword)
-            }
-            try {
-                imageList.await() + videoList.await()
-            } catch (e: Exception) {
-                emptyList()
-            }
-        }
+
+    override fun searchImagePaging(query: String): Flow<PagingData<Media>> {
+        return mediaRemoteSource.pagingImage(query)
     }
 }
