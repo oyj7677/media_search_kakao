@@ -30,7 +30,6 @@ class SearchViewModel @Inject constructor(
         _query.value = keyword
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun searchMedia() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.searchMedia(query.value)
@@ -38,8 +37,7 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun sortDateListDescending(dates: List<Media>): List<Media> {
+    private fun sortDateListDescending(dates: List<Media>): List<Media> {
         val formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
 
         return dates.sortedByDescending { media ->
