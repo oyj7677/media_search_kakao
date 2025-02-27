@@ -8,9 +8,13 @@ import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.repository.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,13 +27,25 @@ class SearchViewModel @Inject constructor(
     val query: StateFlow<String> = _query
 
     private val _mediaPagingList = MutableStateFlow<PagingData<Media>>(PagingData.empty())
-    val mediaPagingList: StateFlow<PagingData<Media>> = _mediaPagingList.asStateFlow()
+    @OptIn(FlowPreview::class)
+    val mediaPagingList: StateFlow<PagingData<Media>> =
+        _mediaPagingList.asStateFlow()
+            .debounce(500L)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(),
+                initialValue = PagingData.empty(),
+            )
 
     fun setQuery(keyword: String) {
         _query.value = keyword
     }
 
-    fun searchMediaPaging(query: String) {
+    fun searchMediaPaging() {
+        searchMediaPaging(_query.value)
+    }
+
+    private fun searchMediaPaging(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.searchImagePaging(query)
                 .cachedIn(viewModelScope)
