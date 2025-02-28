@@ -53,7 +53,12 @@ class MediaRemoteMediator(
             val mediaList = body?.toMediaImageList() ?: emptyList()
             val isEnd = body?.meta?.isEnd ?: true
 
-            mediaLocalDataSource.saveMediaAndKeys(mediaList, page, loadType, isEnd)
+            mediaLocalDataSource.saveMediaAndKeys(
+                mediaList = mediaList,
+                page = page,
+                loadType = loadType,
+                isEnd = isEnd,
+            )
 
             return MediatorResult.Success(mediaList.isEmpty())
 
@@ -64,21 +69,27 @@ class MediaRemoteMediator(
 
     private suspend fun getRemoteKeyInFirstItem(state: PagingState<Int, MediaEntity>): MediaRemoteKeyEntity? {
         return state.firstItemOrNull()?.let { mediaEntity ->
-            mediaLocalDataSource.getMediaRemoteKey(mediaEntity.id)
+            mediaLocalDataSource.getMediaRemoteKey(
+                id = mediaEntity.id
+            )
         }
     }
 
     private suspend fun getRemoteKeyInCurrentItem(state: PagingState<Int, MediaEntity>): MediaRemoteKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
-                mediaLocalDataSource.getMediaRemoteKey(id)
+                mediaLocalDataSource.getMediaRemoteKey(
+                    id = id
+                )
             }
         }
     }
 
     private suspend fun getRemoteKeyInLastItem(state: PagingState<Int, MediaEntity>): MediaRemoteKeyEntity? {
         return state.lastItemOrNull()?.let { mediaEntity ->
-            mediaLocalDataSource.getMediaRemoteKey(mediaEntity.id)
+            mediaLocalDataSource.getMediaRemoteKey(
+                id = mediaEntity.id
+            )
         }
     }
 

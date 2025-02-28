@@ -18,5 +18,10 @@ interface MediaLocalDataSource {
     suspend fun getMediaRemoteKey(id: Long): MediaRemoteKeyEntity?
     suspend fun clearMediaRemoteKeys()
 
-    suspend fun saveMediaAndKeys(mediaList: List<Media>, page: Int, loadType: LoadType, isEnd: Boolean)
+    suspend fun saveMediaAndKeys(
+        mediaList: List<Media>,
+        page: Int,
+        loadType: LoadType,
+        isEnd: Boolean,
+    )
 }

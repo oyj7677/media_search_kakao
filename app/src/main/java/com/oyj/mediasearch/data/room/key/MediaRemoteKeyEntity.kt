@@ -8,5 +8,5 @@ data class MediaRemoteKeyEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val prevKey: Int?,
-    val nextKey: Int?
+    val nextKey: Int?,
 )

@@ -48,7 +48,7 @@ class MediaLocalDataSourceImpl @Inject constructor(
         mediaList: List<Media>,
         page: Int,
         loadType: LoadType,
-        isEnd: Boolean
+        isEnd: Boolean,
     ) {
         database.withTransaction {
             if (loadType == LoadType.REFRESH) {
@@ -61,7 +61,7 @@ class MediaLocalDataSourceImpl @Inject constructor(
             val keys = mediaList.map {
                 MediaRemoteKeyEntity(
                     prevKey = prevKey,
-                    nextKey = nextKey
+                    nextKey = nextKey,
                 )
             }
             insertAllKey(keys)
