@@ -36,7 +36,7 @@ class MediaRepositoryImpl @Inject constructor(
                 mediaRemoteDataSource = mediaRemoteDataSource
             )
         ) {
-            mediaLocalDataSource.getMedia()
+            mediaLocalDataSource.getMediaView()
         }.flow.map { pagingData ->
             pagingData.map { mediaEntity ->
                 mediaEntity.toMedia()

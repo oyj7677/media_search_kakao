@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface MediaRepository {
     fun getMedia(query: String): Flow<PagingData<Media>>
-
     suspend fun insertBookmark(media: Media)
     suspend fun deleteBookmark(mediaUrl: String, thumbnail: String)
     suspend fun getBookmarkList(): PagingSource<Int, BookmarkEntity>

@@ -7,7 +7,7 @@ import androidx.paging.RemoteMediator
 import com.oyj.mediasearch.data.dto.image.toMediaImageList
 import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
 import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
-import com.oyj.mediasearch.data.room.MediaEntity
+import com.oyj.mediasearch.data.room.MediaWithBookmarkView
 import com.oyj.mediasearch.data.room.key.MediaRemoteKeyEntity
 
 @OptIn(ExperimentalPagingApi::class)
@@ -15,11 +15,11 @@ class MediaRemoteMediator(
     private val query: String,
     private val mediaLocalDataSource: MediaLocalDataSource,
     private val mediaRemoteDataSource: MediaRemoteDataSource,
-) : RemoteMediator<Int, MediaEntity>() {
+) : RemoteMediator<Int, MediaWithBookmarkView>() {
 
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, MediaEntity>
+        state: PagingState<Int, MediaWithBookmarkView>
     ): MediatorResult {
         val page: Int = when (loadType) {
             LoadType.REFRESH -> {
@@ -67,7 +67,7 @@ class MediaRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyInFirstItem(state: PagingState<Int, MediaEntity>): MediaRemoteKeyEntity? {
+    private suspend fun getRemoteKeyInFirstItem(state: PagingState<Int, MediaWithBookmarkView>): MediaRemoteKeyEntity? {
         return state.firstItemOrNull()?.let { mediaEntity ->
             mediaLocalDataSource.getMediaRemoteKey(
                 id = mediaEntity.id
@@ -75,7 +75,7 @@ class MediaRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyInCurrentItem(state: PagingState<Int, MediaEntity>): MediaRemoteKeyEntity? {
+    private suspend fun getRemoteKeyInCurrentItem(state: PagingState<Int, MediaWithBookmarkView>): MediaRemoteKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 mediaLocalDataSource.getMediaRemoteKey(
@@ -85,7 +85,7 @@ class MediaRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyInLastItem(state: PagingState<Int, MediaEntity>): MediaRemoteKeyEntity? {
+    private suspend fun getRemoteKeyInLastItem(state: PagingState<Int, MediaWithBookmarkView>): MediaRemoteKeyEntity? {
         return state.lastItemOrNull()?.let { mediaEntity ->
             mediaLocalDataSource.getMediaRemoteKey(
                 id = mediaEntity.id

@@ -31,7 +31,10 @@ fun MediaLazyVerticalGrid(
         contentPadding = PaddingValues(horizontal = 16.dp),
         modifier = modifier
     ) {
-        items(pagingItem.itemCount) { index ->
+        items(
+            count = pagingItem.itemCount,
+            key = { index -> pagingItem[index]?.mediaUrl ?: index }
+        ) { index ->
             val media = pagingItem[index]
             if (media != null) {
                 MediaCard(
@@ -57,7 +60,15 @@ fun MediaLazyVerticalGrid(
                             }
                         }
                     },
-                    bookMark = {},
+                    bookMark = {
+                        if (media.isBookmark) {
+                            MediaTag(
+                                name = "BookMark",
+                                color = R.color.holo_green_light,
+                                modifier = Modifier.align(Alignment.TopEnd)
+                            )
+                        }
+                    },
                     modifier = Modifier
                 )
             }
@@ -69,13 +80,14 @@ fun MediaLazyVerticalGrid(
 @Composable
 private fun MediaLazyVerticalGridPreview() {
     // 가짜 데이터 생성
-    val data: List<Media> = List(30) {
+    val data: List<Media> = List(30) { index ->
         MediaImage(
-            thumbnail = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+            thumbnail = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
             dateTime = "2021-10-10",
-            mediaUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+            mediaUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
             sources = "google.com",
-            imgUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+            imgUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
+            isBookmark = false
         )
     }
     val pagingData = PagingData.from(data)

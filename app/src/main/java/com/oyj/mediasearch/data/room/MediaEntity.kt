@@ -26,7 +26,8 @@ fun MediaEntity.toMedia(): Media {
             dateTime = dateTime,
             mediaUrl = mediaUrl,
             sources = sources,
-            imgUrl = imgUrl
+            imgUrl = imgUrl,
+            isBookmark = false
         )
     } else {
         MediaVideo(
@@ -35,7 +36,8 @@ fun MediaEntity.toMedia(): Media {
             mediaUrl = mediaUrl,
             sources = sources,
             title = title!!,
-            playTime = playTime!!
+            playTime = playTime!!,
+            isBookmark = false
         )
     }
 }

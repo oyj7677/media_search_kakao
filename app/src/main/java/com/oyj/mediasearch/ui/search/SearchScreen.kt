@@ -74,13 +74,14 @@ fun SearchScreen(
 @Composable
 private fun SearchScreenPreview() {
     // 가짜 데이터 생성
-    val fakeData: List<Media> = List(10) {
+    val fakeData: List<Media> = List(10) { index ->
         MediaImage(
-            thumbnail = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+            thumbnail = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
             dateTime = "2021-10-10",
-            mediaUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png",
+            mediaUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
             sources = "google.com",
-            imgUrl = "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png"
+            imgUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
+            isBookmark = false
         )
     }
     val fakePagingData = PagingData.from(fakeData)

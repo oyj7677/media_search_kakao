@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface BookmarkDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertBookmark(bookmarkEntity: BookmarkEntity)
 
     @Query("DELETE FROM BookmarkEntity WHERE mediaUrl = :mediaUrl And thumbnail= :thumbnail")

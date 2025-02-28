@@ -11,6 +11,9 @@ import com.oyj.mediasearch.data.room.key.MediaRemoteKeyEntity
         MediaEntity::class,
         MediaRemoteKeyEntity::class,
         BookmarkEntity::class,
+    ],
+    views = [
+        MediaWithBookmarkView::class,
     ]
 )
 abstract class MediaDatabase : RoomDatabase() {
