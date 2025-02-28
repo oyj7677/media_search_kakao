@@ -1,6 +1,5 @@
 package com.oyj.mediasearch.data.repository
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -8,7 +7,6 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.paging.MediaRemoteMediator
-import com.oyj.mediasearch.data.paging.MediaVideoRemoteMediator
 import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
 import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
 import com.oyj.mediasearch.data.room.toMedia
