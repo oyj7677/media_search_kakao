@@ -27,7 +27,6 @@ fun SearchScreen(
 ) {
     val pagingItem = viewModel.mediaPagingList.collectAsLazyPagingItems()
     val query by viewModel.query.collectAsStateWithLifecycle()
-
     LaunchedEffect(key1 = query) {
         viewModel.searchMediaPaging()
     }

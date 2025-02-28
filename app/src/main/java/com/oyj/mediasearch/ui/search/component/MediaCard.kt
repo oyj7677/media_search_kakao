@@ -25,7 +25,6 @@ fun MediaCard(
     date: String,
     mediaMark: @Composable BoxScope.() -> Unit = {},
     bookMark: @Composable BoxScope.() -> Unit = {},
-
     modifier: Modifier = Modifier
 ) {
     Column(

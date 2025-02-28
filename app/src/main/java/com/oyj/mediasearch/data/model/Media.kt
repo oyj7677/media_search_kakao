@@ -1,5 +1,7 @@
 package com.oyj.mediasearch.data.model
 
+import com.oyj.mediasearch.data.room.MediaEntity
+
 sealed class Media(
     open val thumbnail: String,
     open val dateTime: String,
@@ -33,3 +35,16 @@ data class MediaVideo(
     mediaUrl = mediaUrl,
     sources = sources,
 )
+
+fun Media.toMediaEntity(): MediaEntity {
+    return MediaEntity(
+        id = 0,
+        thumbnail = thumbnail,
+        dateTime = dateTime,
+        mediaUrl = mediaUrl,
+        sources = sources,
+        imgUrl = (this as? MediaImage)?.imgUrl,
+        title = (this as? MediaVideo)?.title,
+        playTime = (this as? MediaVideo)?.playTime,
+    )
+}

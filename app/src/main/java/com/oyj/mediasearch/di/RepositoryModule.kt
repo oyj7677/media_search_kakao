@@ -2,8 +2,10 @@ package com.oyj.mediasearch.di
 
 import com.oyj.mediasearch.data.repository.MediaRepository
 import com.oyj.mediasearch.data.repository.MediaRepositoryImpl
-import com.oyj.mediasearch.data.repository.remote.MediaRemoteSource
-import com.oyj.mediasearch.data.repository.remote.MediaRemoteSourceImpl
+import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
+import com.oyj.mediasearch.data.repository.local.MediaLocalDataSourceImpl
+import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
+import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,5 +19,8 @@ abstract class RepositoryModule {
     abstract fun bindMediaRepository(repository: MediaRepositoryImpl): MediaRepository
 
     @Binds
-    abstract fun bindMediaRemoteSource(source: MediaRemoteSourceImpl): MediaRemoteSource
+    abstract fun bindMediaRemoteSource(source: MediaRemoteDataSourceImpl): MediaRemoteDataSource
+
+    @Binds
+    abstract fun bindMediaLocalSource(repository: MediaLocalDataSourceImpl): MediaLocalDataSource
 }

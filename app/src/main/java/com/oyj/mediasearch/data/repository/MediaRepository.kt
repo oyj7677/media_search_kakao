@@ -5,5 +5,5 @@ import com.oyj.mediasearch.data.model.Media
 import kotlinx.coroutines.flow.Flow
 
 interface MediaRepository {
-    fun searchImagePaging(query: String): Flow<PagingData<Media>>
+    fun getMedia(query: String): Flow<PagingData<Media>>
 }

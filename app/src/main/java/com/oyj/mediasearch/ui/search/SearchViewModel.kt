@@ -7,7 +7,6 @@ import androidx.paging.cachedIn
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.repository.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -27,6 +26,7 @@ class SearchViewModel @Inject constructor(
     val query: StateFlow<String> = _query
 
     private val _mediaPagingList = MutableStateFlow<PagingData<Media>>(PagingData.empty())
+
     @OptIn(FlowPreview::class)
     val mediaPagingList: StateFlow<PagingData<Media>> =
         _mediaPagingList.asStateFlow()
@@ -46,8 +46,8 @@ class SearchViewModel @Inject constructor(
     }
 
     private fun searchMediaPaging(query: String) {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.searchImagePaging(query)
+        viewModelScope.launch {
+            repository.getMedia(query)
                 .cachedIn(viewModelScope)
                 .collect {
                     _mediaPagingList.value = it
