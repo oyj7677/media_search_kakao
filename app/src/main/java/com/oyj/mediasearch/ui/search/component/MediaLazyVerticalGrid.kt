@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 @Composable
 fun MediaLazyVerticalGrid(
     pagingItem: LazyPagingItems<Media>,
+    onClickCard: (Media) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
@@ -36,6 +37,7 @@ fun MediaLazyVerticalGrid(
                 MediaCard(
                     imgUrl = media.thumbnail,
                     date = media.dateTime,
+                    onClickCard = { onClickCard(media) },
                     mediaMark = {
                         when (media) {
                             is MediaImage -> {

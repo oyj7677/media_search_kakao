@@ -28,6 +28,7 @@ fun SearchScreen(
     val pagingItem = viewModel.mediaPagingList.collectAsLazyPagingItems()
     val query by viewModel.query.collectAsStateWithLifecycle()
     LaunchedEffect(key1 = query) {
+        if (query.isEmpty()) return@LaunchedEffect
         viewModel.searchMediaPaging()
     }
 
@@ -36,6 +37,9 @@ fun SearchScreen(
         pagingItem = pagingItem,
         onValueChange = {
             viewModel.setQuery(it)
+        },
+        onClickCard = {
+            viewModel.saveMedia(it)
         },
         modifier = modifier
     )
@@ -46,6 +50,7 @@ fun SearchScreen(
     query: String,
     pagingItem: LazyPagingItems<Media>,
     onValueChange: (String) -> Unit = {},
+    onClickCard: (Media) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -59,6 +64,7 @@ fun SearchScreen(
 
         MediaLazyVerticalGrid(
             pagingItem = pagingItem,
+            onClickCard = onClickCard,
             modifier = Modifier
         )
     }

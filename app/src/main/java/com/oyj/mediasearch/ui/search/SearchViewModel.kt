@@ -54,4 +54,10 @@ class SearchViewModel @Inject constructor(
                 }
         }
     }
+
+    fun saveMedia(media: Media) {
+        viewModelScope.launch {
+            repository.insertBookmark(media)
+        }
+    }
 }

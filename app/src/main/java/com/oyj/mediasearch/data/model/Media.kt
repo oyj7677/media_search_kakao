@@ -1,5 +1,6 @@
 package com.oyj.mediasearch.data.model
 
+import com.oyj.mediasearch.data.room.BookmarkEntity
 import com.oyj.mediasearch.data.room.MediaEntity
 
 sealed class Media(
@@ -38,6 +39,19 @@ data class MediaVideo(
 
 fun Media.toMediaEntity(): MediaEntity {
     return MediaEntity(
+        id = 0,
+        thumbnail = thumbnail,
+        dateTime = dateTime,
+        mediaUrl = mediaUrl,
+        sources = sources,
+        imgUrl = (this as? MediaImage)?.imgUrl,
+        title = (this as? MediaVideo)?.title,
+        playTime = (this as? MediaVideo)?.playTime,
+    )
+}
+
+fun Media.toBookmarkEntity(): BookmarkEntity {
+    return BookmarkEntity(
         id = 0,
         thumbnail = thumbnail,
         dateTime = dateTime,
