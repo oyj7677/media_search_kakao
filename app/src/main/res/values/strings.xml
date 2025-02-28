@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MediaSearch</string>
+    <string name="text_media_card_content_description">미디어 정보가 담긴 카드 입니다.</string>
+    <string name="text_enter_search_word">검색어를 입력해주세요.</string>
+    <string name="text_search_word_clear_icon">클릭 시 검색어가 초기화됩니다.</string>
 </resources>

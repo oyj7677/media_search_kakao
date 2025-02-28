@@ -12,9 +12,14 @@ kotlinxCoroutinesAndroid = "1.10.1"
 roomCompiler = "2.6.1"
 okhttp = "4.12.0"
 retrofitVersion = "2.11.0"
+retrofit2KotlinxSerializationConverter = "1.0.0"
 coil = "3.1.0"
 navigationCompose = "2.8.7"
 hilt = "2.51.1"
+kotlinxSerializationJson = "1.8.0"
+pagingRuntimeKtx = "3.3.6"
+pagingCompose = "3.3.6"
+desugar_jdk_libs = "2.1.5"
 assertjCore = "3.22.0"
 
 [libraries]
@@ -38,11 +43,16 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomComp
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomCompiler" }
 squareup-okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 retrofit2 = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofitVersion" }
+retrofit2-kotlinx-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version.ref = "retrofit2KotlinxSerializationConverter" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+androidx-paging-runtime-ktx = { module = "androidx.paging:paging-runtime-ktx", version.ref = "pagingRuntimeKtx" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
+desugar_jdk_libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar_jdk_libs" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertjCore" }
 mockwebserver = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
