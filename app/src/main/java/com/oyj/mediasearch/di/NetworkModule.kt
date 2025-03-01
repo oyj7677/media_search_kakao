@@ -6,8 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.logging.HttpLoggingInterceptor
 import com.oyj.mediasearch.BuildConfig
-import com.oyj.mediasearch.network.HeaderInterceptor
-import com.oyj.mediasearch.network.KakaoApiService
+import com.oyj.mediasearch.data.remote.network.HeaderInterceptor
+import com.oyj.mediasearch.data.remote.network.KakaoApiService
 import dagger.Provides
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType

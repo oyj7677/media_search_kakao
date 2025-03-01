@@ -1,13 +1,13 @@
 package com.oyj.mediasearch.di
 
-import com.oyj.mediasearch.data.repository.MediaRepository
+import com.oyj.mediasearch.domain.repository.MediaRepository
 import com.oyj.mediasearch.data.repository.MediaRepositoryImpl
-import com.oyj.mediasearch.data.repository.local.BookmarkDataSource
-import com.oyj.mediasearch.data.repository.local.BookmarkDataSourceImpl
-import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
-import com.oyj.mediasearch.data.repository.local.MediaLocalDataSourceImpl
-import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
-import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSourceImpl
+import com.oyj.mediasearch.data.local.bookmark.BookmarkDataSource
+import com.oyj.mediasearch.data.local.bookmark.BookmarkDataSourceImpl
+import com.oyj.mediasearch.data.local.media.MediaLocalDataSource
+import com.oyj.mediasearch.data.local.media.MediaLocalDataSourceImpl
+import com.oyj.mediasearch.data.remote.media.MediaRemoteDataSource
+import com.oyj.mediasearch.data.remote.media.MediaRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

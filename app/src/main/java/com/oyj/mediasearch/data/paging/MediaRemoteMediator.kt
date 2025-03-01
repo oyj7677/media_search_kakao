@@ -4,11 +4,11 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
-import com.oyj.mediasearch.data.dto.image.toMediaImageList
-import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
-import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
-import com.oyj.mediasearch.data.room.MediaWithBookmarkView
-import com.oyj.mediasearch.data.room.key.MediaRemoteKeyEntity
+import com.oyj.mediasearch.data.local.media.MediaLocalDataSource
+import com.oyj.mediasearch.data.remote.media.MediaRemoteDataSource
+import com.oyj.mediasearch.data.local.room.view.MediaWithBookmarkView
+import com.oyj.mediasearch.data.local.room.entity.MediaRemoteKeyEntity
+import com.oyj.mediasearch.util.mapper.toMediaImageList
 
 @OptIn(ExperimentalPagingApi::class)
 class MediaRemoteMediator(
