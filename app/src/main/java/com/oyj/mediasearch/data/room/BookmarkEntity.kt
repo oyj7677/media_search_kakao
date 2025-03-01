@@ -23,16 +23,7 @@ data class BookmarkEntity(
 )
 
 fun BookmarkEntity.toMedia(): Media {
-    return if (imgUrl != null) {
-        MediaImage(
-            thumbnail = thumbnail,
-            dateTime = dateTime,
-            mediaUrl = mediaUrl,
-            sources = sources,
-            imgUrl = imgUrl,
-            isBookmark = false
-        )
-    } else {
+    return if (imgUrl == null) {
         MediaVideo(
             thumbnail = thumbnail,
             dateTime = dateTime,
@@ -40,6 +31,15 @@ fun BookmarkEntity.toMedia(): Media {
             sources = sources,
             title = title!!,
             playTime = playTime!!,
+            isBookmark = false
+        )
+    } else {
+        MediaImage(
+            thumbnail = thumbnail,
+            dateTime = dateTime,
+            mediaUrl = mediaUrl,
+            sources = sources,
+            imgUrl = imgUrl,
             isBookmark = false
         )
     }

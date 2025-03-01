@@ -74,6 +74,7 @@ fun Media.toBookmarkEntity(): BookmarkEntity {
             dateTime = dateTime,
             mediaUrl = mediaUrl,
             sources = sources,
+            imgUrl = imgUrl
         )
 
         is MediaVideo -> BookmarkEntity(

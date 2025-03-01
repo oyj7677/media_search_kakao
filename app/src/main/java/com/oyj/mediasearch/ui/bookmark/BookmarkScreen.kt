@@ -1,20 +1,48 @@
 package com.oyj.mediasearch.ui.bookmark
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.oyj.mediasearch.data.model.Media
+import com.oyj.mediasearch.ui.search.component.MediaLazyVerticalGrid
 
 @Composable
-fun BookmarkScreen(modifier: Modifier = Modifier) {
+fun BookmarkScreen(
+    viewModel: BookmarkViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier
+) {
+    val mediaPagingList = viewModel.mediaPagingList.collectAsLazyPagingItems()
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.fetchBookmarkList()
+    }
+
+    BookmarkScreen(
+        mediaPagingList = mediaPagingList,
+        onClickCard = { viewModel.deleteMedia(it.mediaUrl, it.thumbnail) },
+        modifier = modifier
+    )
+}
+
+@Composable
+fun BookmarkScreen(
+    mediaPagingList: LazyPagingItems<Media>,
+    onClickCard: (Media) -> Unit = {},
+    modifier: Modifier = Modifier
+) {
     Column(
-        modifier = Modifier
-            .background(Color.Blue)
-            .fillMaxSize()
+        modifier = modifier
     ) {
-        Text(text = "Bookmark Screen", modifier = modifier)
+        MediaLazyVerticalGrid(
+            pagingItem = mediaPagingList,
+            onClickCard = onClickCard,
+            modifier = Modifier
+        )
     }
 }
+
+

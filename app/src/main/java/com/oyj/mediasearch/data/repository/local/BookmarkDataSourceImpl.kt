@@ -19,7 +19,7 @@ class BookmarkDataSourceImpl @Inject constructor(
         )
     }
 
-    override suspend fun getBookmarkList(): PagingSource<Int, BookmarkEntity> {
+    override fun getBookmarkList(): PagingSource<Int, BookmarkEntity> {
         return database.bookmarkDao().getBookmarkList()
     }
 

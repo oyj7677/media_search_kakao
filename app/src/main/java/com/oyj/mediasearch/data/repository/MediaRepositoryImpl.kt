@@ -4,7 +4,6 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import androidx.paging.map
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.model.toBookmarkEntity
@@ -12,7 +11,6 @@ import com.oyj.mediasearch.data.paging.MediaRemoteMediator
 import com.oyj.mediasearch.data.repository.local.BookmarkDataSource
 import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
 import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
-import com.oyj.mediasearch.data.room.BookmarkEntity
 import com.oyj.mediasearch.data.room.toMedia
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -52,8 +50,20 @@ class MediaRepositoryImpl @Inject constructor(
         bookmarkDatasource.deleteBookmark(mediaUrl, thumbnail)
     }
 
-    override suspend fun getBookmarkList(): PagingSource<Int, BookmarkEntity> {
-        return bookmarkDatasource.getBookmarkList()
+    override fun getBookmarkList(): Flow<PagingData<Media>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = PAGE_SIZE,
+                enablePlaceholders = false
+            ),
+            pagingSourceFactory = {
+                bookmarkDatasource.getBookmarkList()
+            }
+        ).flow.map { pagingData ->
+            pagingData.map { bookmarkEntity ->
+                bookmarkEntity.toMedia() // BookmarkEntity를 Media로 변환
+            }
+        }
     }
 
     override suspend fun isBookmarked(mediaUrl: String, thumbnail: String): Boolean {

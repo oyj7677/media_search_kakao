@@ -38,7 +38,16 @@ data class MediaWithBookmarkView(
 )
 
 fun MediaWithBookmarkView.toMedia(): Media {
-    return if (title != null) {
+    return if (title == null) {
+        MediaImage(
+            thumbnail = thumbnail,
+            dateTime = dateTime,
+            mediaUrl = mediaUrl,
+            sources = sources,
+            imgUrl = imgUrl ?: "",
+            isBookmark = isBookmark
+        )
+    } else {
         MediaVideo(
             thumbnail = thumbnail,
             dateTime = dateTime,
@@ -47,15 +56,6 @@ fun MediaWithBookmarkView.toMedia(): Media {
             isBookmark = isBookmark,
             title = title,
             playTime = playTime
-        )
-    } else {
-        MediaImage(
-            thumbnail = thumbnail,
-            dateTime = dateTime,
-            mediaUrl = mediaUrl,
-            sources = sources,
-            imgUrl = imgUrl!!,
-            isBookmark = isBookmark
         )
     }
 }
