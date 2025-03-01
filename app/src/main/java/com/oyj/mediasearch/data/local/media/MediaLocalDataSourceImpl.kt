@@ -32,15 +32,15 @@ class MediaLocalDataSourceImpl @Inject constructor(
     }
 
     override suspend fun insertAllKey(remoteKeys: List<MediaImageRemoteKeyEntity>) {
-        database.mediaRemoteKeyDao().insertAll(remoteKeys)
+        database.mediaRemoteKeyDao().insertMediaImageRemoteKeyList(remoteKeys)
     }
 
     override suspend fun getMediaRemoteKey(id: Long): MediaImageRemoteKeyEntity {
-        return database.mediaRemoteKeyDao().getMediaRemoteKey(id)
+        return database.mediaRemoteKeyDao().getMediaImageRemoteKey(id)
     }
 
     override suspend fun clearMediaRemoteKeys() {
-        database.mediaRemoteKeyDao().clearMediaRemoteKeys()
+        database.mediaRemoteKeyDao().clearMediaImageRemoteKeys()
     }
 
     override suspend fun saveMediaAndKeys(

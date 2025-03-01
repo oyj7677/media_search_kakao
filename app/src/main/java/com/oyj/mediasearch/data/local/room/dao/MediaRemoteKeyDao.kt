@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.oyj.mediasearch.data.local.room.entity.MediaImageRemoteKeyEntity
-import com.oyj.mediasearch.data.local.room.entity.MediaVideoRemoteKeyEntity
 
 @Dao
 interface MediaRemoteKeyDao {
