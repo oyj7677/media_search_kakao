@@ -7,7 +7,7 @@ import com.oyj.mediasearch.domain.model.Media
 import com.oyj.mediasearch.data.local.room.MediaDatabase
 import com.oyj.mediasearch.data.local.room.entity.MediaEntity
 import com.oyj.mediasearch.data.local.room.view.MediaWithBookmarkView
-import com.oyj.mediasearch.data.local.room.entity.MediaRemoteKeyEntity
+import com.oyj.mediasearch.data.local.room.entity.MediaImageRemoteKeyEntity
 import com.oyj.mediasearch.util.mapper.toMediaEntity
 import javax.inject.Inject
 
@@ -31,11 +31,11 @@ class MediaLocalDataSourceImpl @Inject constructor(
         return database.mediaDao().getMedia()
     }
 
-    override suspend fun insertAllKey(remoteKeys: List<MediaRemoteKeyEntity>) {
+    override suspend fun insertAllKey(remoteKeys: List<MediaImageRemoteKeyEntity>) {
         database.mediaRemoteKeyDao().insertAll(remoteKeys)
     }
 
-    override suspend fun getMediaRemoteKey(id: Long): MediaRemoteKeyEntity {
+    override suspend fun getMediaRemoteKey(id: Long): MediaImageRemoteKeyEntity {
         return database.mediaRemoteKeyDao().getMediaRemoteKey(id)
     }
 
@@ -58,7 +58,7 @@ class MediaLocalDataSourceImpl @Inject constructor(
             val prevKey = if (page == MEDIA_START_PAEGING_INDEX) null else page - 1
             val nextKey = if (mediaList.isEmpty() || isEnd) null else page + 1
             val keys = mediaList.map {
-                MediaRemoteKeyEntity(
+                MediaImageRemoteKeyEntity(
                     prevKey = prevKey,
                     nextKey = nextKey,
                 )

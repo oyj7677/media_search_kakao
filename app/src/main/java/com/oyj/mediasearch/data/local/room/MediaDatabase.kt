@@ -7,14 +7,14 @@ import com.oyj.mediasearch.data.local.room.dao.MediaDao
 import com.oyj.mediasearch.data.local.room.entity.BookmarkEntity
 import com.oyj.mediasearch.data.local.room.entity.MediaEntity
 import com.oyj.mediasearch.data.local.room.dao.MediaRemoteKeyDao
-import com.oyj.mediasearch.data.local.room.entity.MediaRemoteKeyEntity
+import com.oyj.mediasearch.data.local.room.entity.MediaImageRemoteKeyEntity
 import com.oyj.mediasearch.data.local.room.view.MediaWithBookmarkView
 
 @Database(
     version = 1,
     entities = [
         MediaEntity::class,
-        MediaRemoteKeyEntity::class,
+        MediaImageRemoteKeyEntity::class,
         BookmarkEntity::class,
     ],
     views = [

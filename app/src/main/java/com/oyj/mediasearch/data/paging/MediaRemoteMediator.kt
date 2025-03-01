@@ -7,7 +7,7 @@ import androidx.paging.RemoteMediator
 import com.oyj.mediasearch.data.local.media.MediaLocalDataSource
 import com.oyj.mediasearch.data.remote.media.MediaRemoteDataSource
 import com.oyj.mediasearch.data.local.room.view.MediaWithBookmarkView
-import com.oyj.mediasearch.data.local.room.entity.MediaRemoteKeyEntity
+import com.oyj.mediasearch.data.local.room.entity.MediaImageRemoteKeyEntity
 import com.oyj.mediasearch.util.mapper.toMediaImageList
 
 @OptIn(ExperimentalPagingApi::class)
@@ -53,6 +53,7 @@ class MediaRemoteMediator(
             val mediaList = body?.toMediaImageList() ?: emptyList()
             val isEnd = body?.meta?.isEnd ?: true
 
+
             mediaLocalDataSource.saveMediaAndKeys(
                 mediaList = mediaList,
                 page = page,
@@ -67,7 +68,7 @@ class MediaRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyInFirstItem(state: PagingState<Int, MediaWithBookmarkView>): MediaRemoteKeyEntity? {
+    private suspend fun getRemoteKeyInFirstItem(state: PagingState<Int, MediaWithBookmarkView>): MediaImageRemoteKeyEntity? {
         return state.firstItemOrNull()?.let { mediaEntity ->
             mediaLocalDataSource.getMediaRemoteKey(
                 id = mediaEntity.id
@@ -75,7 +76,7 @@ class MediaRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyInCurrentItem(state: PagingState<Int, MediaWithBookmarkView>): MediaRemoteKeyEntity? {
+    private suspend fun getRemoteKeyInCurrentItem(state: PagingState<Int, MediaWithBookmarkView>): MediaImageRemoteKeyEntity? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 mediaLocalDataSource.getMediaRemoteKey(
@@ -85,7 +86,7 @@ class MediaRemoteMediator(
         }
     }
 
-    private suspend fun getRemoteKeyInLastItem(state: PagingState<Int, MediaWithBookmarkView>): MediaRemoteKeyEntity? {
+    private suspend fun getRemoteKeyInLastItem(state: PagingState<Int, MediaWithBookmarkView>): MediaImageRemoteKeyEntity? {
         return state.lastItemOrNull()?.let { mediaEntity ->
             mediaLocalDataSource.getMediaRemoteKey(
                 id = mediaEntity.id
