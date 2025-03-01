@@ -16,7 +16,8 @@ fun KakaoImageDto.toMediaImageList(): List<MediaImage> {
             dateTime = it.datetime,
             mediaUrl = it.imageUrl,
             sources = it.displaySiteName,
-            imgUrl = it.imageUrl
+            imgUrl = it.imageUrl,
+            isBookmark = false
         )
     }
 }

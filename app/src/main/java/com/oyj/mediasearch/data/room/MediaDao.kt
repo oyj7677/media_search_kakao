@@ -24,4 +24,7 @@ interface MediaDao {
 
     @Query("SELECT * FROM MediaEntity")
     fun getMedia(): PagingSource<Int, MediaEntity>
+
+    @Query("SELECT * FROM media_with_bookmark_view")
+    fun getMediaView(): PagingSource<Int, MediaWithBookmarkView>
 }

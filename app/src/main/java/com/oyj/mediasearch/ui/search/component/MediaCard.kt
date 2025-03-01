@@ -1,6 +1,7 @@
 package com.oyj.mediasearch.ui.search.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
@@ -23,17 +24,19 @@ import com.oyj.mediasearch.R
 fun MediaCard(
     imgUrl: String,
     date: String,
+    onClickCard: () -> Unit = {},
     mediaMark: @Composable BoxScope.() -> Unit = {},
     bookMark: @Composable BoxScope.() -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier.clickable { onClickCard() }
     ) {
         Box(
             modifier = Modifier
-                .fillMaxWidth()
-        ) {
+                .fillMaxWidth(),
+
+            ) {
             AsyncImage(
                 model = imgUrl,
                 contentDescription = stringResource(id = R.string.text_media_card_content_description),

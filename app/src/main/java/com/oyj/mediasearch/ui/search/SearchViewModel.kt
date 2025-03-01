@@ -37,6 +37,7 @@ class SearchViewModel @Inject constructor(
                 initialValue = PagingData.empty(),
             )
 
+
     fun setQuery(keyword: String) {
         _query.value = keyword
     }
@@ -52,6 +53,21 @@ class SearchViewModel @Inject constructor(
                 .collect {
                     _mediaPagingList.value = it
                 }
+        }
+    }
+
+    fun saveMedia(media: Media) {
+        viewModelScope.launch {
+            val isBookmark = repository.isBookmarked(
+                mediaUrl = media.mediaUrl,
+                thumbnail = media.thumbnail
+            )
+
+            if (isBookmark) {
+                repository.deleteBookmark(media.mediaUrl, media.thumbnail)
+            } else {
+                repository.insertBookmark(media)
+            }
         }
     }
 }

@@ -5,13 +5,14 @@ import androidx.paging.PagingSource
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.model.MediaImage
 import com.oyj.mediasearch.data.room.MediaEntity
+import com.oyj.mediasearch.data.room.MediaWithBookmarkView
 import com.oyj.mediasearch.data.room.key.MediaRemoteKeyEntity
 
 interface MediaLocalDataSource {
 
     suspend fun clearMedia()
     suspend fun insertMediaList(mediaList: List<MediaEntity>)
-    fun getMedia(): PagingSource<Int, MediaEntity>
+    fun getMediaView(): PagingSource<Int, MediaWithBookmarkView>
     suspend fun getBookmarkedMedia(): PagingSource<Int, MediaEntity>
 
     suspend fun insertAllKey(remoteKeys: List<MediaRemoteKeyEntity>)

@@ -1,13 +1,16 @@
 package com.oyj.mediasearch.data.room
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.oyj.mediasearch.data.model.Media
 import com.oyj.mediasearch.data.model.MediaImage
 import com.oyj.mediasearch.data.model.MediaVideo
 
-@Entity
-data class MediaEntity(
+@Entity(
+    indices = [Index(value = ["thumbnail", "imgUrl"], unique = true)]
+)
+data class BookmarkEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val thumbnail: String,
@@ -19,17 +22,8 @@ data class MediaEntity(
     val playTime: Int? = null,
 )
 
-fun MediaEntity.toMedia(): Media {
-    return if (imgUrl != null) {
-        MediaImage(
-            thumbnail = thumbnail,
-            dateTime = dateTime,
-            mediaUrl = mediaUrl,
-            sources = sources,
-            imgUrl = imgUrl,
-            isBookmark = false
-        )
-    } else {
+fun BookmarkEntity.toMedia(): Media {
+    return if (imgUrl == null) {
         MediaVideo(
             thumbnail = thumbnail,
             dateTime = dateTime,
@@ -37,6 +31,15 @@ fun MediaEntity.toMedia(): Media {
             sources = sources,
             title = title!!,
             playTime = playTime!!,
+            isBookmark = false
+        )
+    } else {
+        MediaImage(
+            thumbnail = thumbnail,
+            dateTime = dateTime,
+            mediaUrl = mediaUrl,
+            sources = sources,
+            imgUrl = imgUrl,
             isBookmark = false
         )
     }

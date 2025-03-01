@@ -17,7 +17,8 @@ fun KakaoVideoDto.toMediaVideoList(): List<MediaVideo> {
             mediaUrl = it.url,
             sources = it.author,
             title = it.title,
-            playTime = it.playTime
+            playTime = it.playTime,
+            isBookmark = false
         )
     }
 }

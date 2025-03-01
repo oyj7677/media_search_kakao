@@ -2,13 +2,13 @@ package com.oyj.mediasearch.data.repository.local
 
 import androidx.paging.LoadType
 import androidx.paging.PagingSource
-import androidx.room.Transaction
 import androidx.room.withTransaction
 import com.oyj.mediasearch.data.model.Media
-import com.oyj.mediasearch.data.model.MediaImage
+import com.oyj.mediasearch.data.model.toBookmarkEntity
 import com.oyj.mediasearch.data.model.toMediaEntity
 import com.oyj.mediasearch.data.room.MediaDatabase
 import com.oyj.mediasearch.data.room.MediaEntity
+import com.oyj.mediasearch.data.room.MediaWithBookmarkView
 import com.oyj.mediasearch.data.room.key.MediaRemoteKeyEntity
 import javax.inject.Inject
 
@@ -24,9 +24,10 @@ class MediaLocalDataSourceImpl @Inject constructor(
         database.mediaDao().insertMediaList(mediaList)
     }
 
-    override fun getMedia(): PagingSource<Int, MediaEntity> {
-        return database.mediaDao().getMedia()
+    override fun getMediaView(): PagingSource<Int, MediaWithBookmarkView> {
+        return database.mediaDao().getMediaView()
     }
+    // 북마크와 join?
 
     override suspend fun getBookmarkedMedia(): PagingSource<Int, MediaEntity> {
         return database.mediaDao().getMedia()

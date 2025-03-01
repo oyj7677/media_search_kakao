@@ -2,6 +2,7 @@ package com.oyj.mediasearch.di
 
 import android.content.Context
 import androidx.room.Room
+import com.oyj.mediasearch.data.room.BookmarkDao
 import com.oyj.mediasearch.data.room.MediaDao
 import com.oyj.mediasearch.data.room.MediaDatabase
 import com.oyj.mediasearch.data.room.key.MediaRemoteKeyDao
@@ -37,5 +38,11 @@ object DataBaseModule {
     @Provides
     fun provideMediaRemoteKeyDao(mediaDatabase: MediaDatabase): MediaRemoteKeyDao {
         return mediaDatabase.mediaRemoteKeyDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideBookmarkDao(mediaDatabase: MediaDatabase): BookmarkDao {
+        return mediaDatabase.bookmarkDao()
     }
 }
