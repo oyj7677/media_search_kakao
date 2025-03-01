@@ -10,11 +10,11 @@ class MediaRemoteDataSourceImpl @Inject constructor(
     private val kakaoApiService: KakaoApiService,
 ) : MediaRemoteDataSource {
     override suspend fun getImageMedia(query: String, page: Int): Response<KakaoImageDto> {
-        return kakaoApiService.searchImage(query, SORT_MODE, page, PAGE_SIZE)
+        return kakaoApiService.searchImage(query, SORT_MODE, page, PAGE_SIZE/2)
     }
 
     override suspend fun getVideoMedia(query: String, page: Int): Response<KakaoVideoDto> {
-        return kakaoApiService.searchVideo(query, SORT_MODE, page, PAGE_SIZE)
+        return kakaoApiService.searchVideo(query, SORT_MODE, page, PAGE_SIZE/2)
     }
 
     companion object {
