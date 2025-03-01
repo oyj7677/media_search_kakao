@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
     // coroutine
     implementation(libs.kotlinx.coroutines.android)
     // room
@@ -87,6 +88,7 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     // hilt
     implementation(libs.hilt.android)
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     ksp(libs.hilt.compiler)
     // serialization
     implementation(libs.kotlinx.serialization.json)
