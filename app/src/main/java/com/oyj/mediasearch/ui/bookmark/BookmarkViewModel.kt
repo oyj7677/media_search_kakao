@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.oyj.mediasearch.data.model.Media
-import com.oyj.mediasearch.data.repository.MediaRepository
+import com.oyj.mediasearch.domain.model.Media
+import com.oyj.mediasearch.domain.repository.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

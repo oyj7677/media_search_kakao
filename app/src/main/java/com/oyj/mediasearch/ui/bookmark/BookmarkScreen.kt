@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.oyj.mediasearch.data.model.Media
-import com.oyj.mediasearch.ui.search.component.MediaLazyVerticalGrid
+import com.oyj.mediasearch.domain.model.Media
+import com.oyj.mediasearch.ui.component.MediaLazyVerticalGrid
 
 @Composable
 fun BookmarkScreen(

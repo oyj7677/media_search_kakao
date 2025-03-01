@@ -2,10 +2,10 @@ package com.oyj.mediasearch.di
 
 import android.content.Context
 import androidx.room.Room
-import com.oyj.mediasearch.data.room.BookmarkDao
-import com.oyj.mediasearch.data.room.MediaDao
-import com.oyj.mediasearch.data.room.MediaDatabase
-import com.oyj.mediasearch.data.room.key.MediaRemoteKeyDao
+import com.oyj.mediasearch.data.local.room.dao.BookmarkDao
+import com.oyj.mediasearch.data.local.room.dao.MediaDao
+import com.oyj.mediasearch.data.local.room.MediaDatabase
+import com.oyj.mediasearch.data.local.room.dao.MediaRemoteKeyDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

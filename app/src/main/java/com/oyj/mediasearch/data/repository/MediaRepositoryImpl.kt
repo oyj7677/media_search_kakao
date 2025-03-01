@@ -5,13 +5,15 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.oyj.mediasearch.data.model.Media
-import com.oyj.mediasearch.data.model.toBookmarkEntity
+import com.oyj.mediasearch.domain.model.Media
 import com.oyj.mediasearch.data.paging.MediaRemoteMediator
-import com.oyj.mediasearch.data.repository.local.BookmarkDataSource
-import com.oyj.mediasearch.data.repository.local.MediaLocalDataSource
-import com.oyj.mediasearch.data.repository.remote.MediaRemoteDataSource
-import com.oyj.mediasearch.data.room.toMedia
+import com.oyj.mediasearch.data.local.bookmark.BookmarkDataSource
+import com.oyj.mediasearch.data.local.media.MediaLocalDataSource
+import com.oyj.mediasearch.data.remote.media.MediaRemoteDataSource
+import com.oyj.mediasearch.domain.repository.MediaRepository
+import com.oyj.mediasearch.data.local.room.view.toMedia
+import com.oyj.mediasearch.util.mapper.toBookmarkEntity
+import com.oyj.mediasearch.util.mapper.toMedia
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -61,7 +63,7 @@ class MediaRepositoryImpl @Inject constructor(
             }
         ).flow.map { pagingData ->
             pagingData.map { bookmarkEntity ->
-                bookmarkEntity.toMedia() // BookmarkEntity를 Media로 변환
+                bookmarkEntity.toMedia()
             }
         }
     }

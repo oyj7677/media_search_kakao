@@ -14,9 +14,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.oyj.mediasearch.data.model.Media
-import com.oyj.mediasearch.data.model.MediaImage
-import com.oyj.mediasearch.ui.search.component.MediaLazyVerticalGrid
+import com.oyj.mediasearch.domain.model.Media
+import com.oyj.mediasearch.domain.model.MediaImage
+import com.oyj.mediasearch.ui.component.MediaLazyVerticalGrid
 import com.oyj.mediasearch.ui.search.component.SearchBar
 import kotlinx.coroutines.flow.MutableStateFlow
 
