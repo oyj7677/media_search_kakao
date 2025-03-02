@@ -11,7 +11,6 @@ import com.oyj.mediasearch.data.local.bookmark.BookmarkDataSource
 import com.oyj.mediasearch.data.local.media.MediaLocalDataSource
 import com.oyj.mediasearch.data.remote.media.MediaRemoteDataSource
 import com.oyj.mediasearch.domain.repository.MediaRepository
-import com.oyj.mediasearch.data.local.room.view.toMedia
 import com.oyj.mediasearch.util.mapper.toBookmarkEntity
 import com.oyj.mediasearch.util.mapper.toMedia
 import kotlinx.coroutines.flow.Flow

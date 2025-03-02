@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class MediaRemoteKeyEntity(
+data class MediaVideoRemoteKeyEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val prevKey: Int?,

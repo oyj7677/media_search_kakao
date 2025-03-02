@@ -3,6 +3,7 @@ package com.oyj.mediasearch.ui.component
 import android.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.oyj.mediasearch.domain.model.Media
 import com.oyj.mediasearch.domain.model.MediaImage
 import com.oyj.mediasearch.domain.model.MediaVideo
+import com.oyj.mediasearch.ui.search.component.Circle
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
@@ -45,27 +47,25 @@ fun MediaLazyVerticalGrid(
                         when (media) {
                             is MediaImage -> {
                                 MediaTag(
-                                    name = "ImageMark",
+                                    name = "이미지",
                                     color = R.color.holo_blue_light,
-                                    modifier = Modifier.align(Alignment.TopStart)
+                                    modifier = Modifier.align(Alignment.TopStart).padding(4.dp)
                                 )
                             }
 
                             is MediaVideo -> {
                                 MediaTag(
-                                    name = "VideoMark",
+                                    name = "비디오",
                                     color = R.color.holo_red_light,
-                                    modifier = Modifier.align(Alignment.TopStart)
+                                    modifier = Modifier.align(Alignment.TopStart).padding(4.dp)
                                 )
                             }
                         }
                     },
                     bookMark = {
                         if (media.isBookmark) {
-                            MediaTag(
-                                name = "BookMark",
-                                color = R.color.holo_green_light,
-                                modifier = Modifier.align(Alignment.TopEnd)
+                            Circle(
+                                modifier = Modifier.align(Alignment.TopEnd).padding(4.dp)
                             )
                         }
                     },
@@ -87,7 +87,7 @@ private fun MediaLazyVerticalGridPreview() {
             mediaUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
             sources = "google.com",
             imgUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
-            isBookmark = false
+            isBookmark = true
         )
     }
     val pagingData = PagingData.from(data)
