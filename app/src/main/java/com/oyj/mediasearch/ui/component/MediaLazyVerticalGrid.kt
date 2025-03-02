@@ -64,9 +64,9 @@ fun MediaLazyVerticalGrid(
                     },
                     bookMark = {
                         if (media.isBookmark) {
-                            Circle(
-                                modifier = Modifier.align(Alignment.TopEnd).padding(4.dp)
-                            )
+                           Circle(
+                               modifier = Modifier.align(Alignment.TopEnd).padding(4.dp)
+                           )
                         }
                     },
                     modifier = Modifier
@@ -87,7 +87,7 @@ private fun MediaLazyVerticalGridPreview() {
             mediaUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
             sources = "google.com",
             imgUrl = "https://www.google.com/images/branding/googlelogo$index/2x/googlelogo_color_92x30dp.png",
-            isBookmark = true
+            isBookmark = false
         )
     }
     val pagingData = PagingData.from(data)
