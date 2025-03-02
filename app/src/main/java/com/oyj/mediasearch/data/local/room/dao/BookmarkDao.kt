@@ -15,7 +15,7 @@ interface BookmarkDao {
     @Query("DELETE FROM BookmarkEntity WHERE mediaUrl = :mediaUrl And thumbnail= :thumbnail")
     suspend fun deleteBookmark(mediaUrl: String, thumbnail: String)
 
-    @Query("SELECT * FROM BookmarkEntity")
+    @Query("SELECT * FROM BookmarkEntity ORDER BY id DESC")
     fun getBookmarkList(): PagingSource<Int, BookmarkEntity>
 
     @Query("SELECT EXISTS(SELECT 1 FROM BookmarkEntity WHERE mediaUrl = :mediaUrl And thumbnail= :thumbnail)")
