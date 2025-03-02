@@ -1,6 +1,8 @@
 package com.oyj.mediasearch.ui.search
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.lazy.grid.LazyGridState
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -27,14 +29,18 @@ fun SearchScreen(
 ) {
     val pagingItem = viewModel.mediaPagingList.collectAsLazyPagingItems()
     val query by viewModel.query.collectAsStateWithLifecycle()
+    val lazyGridState = rememberLazyGridState()
+
     LaunchedEffect(key1 = query) {
         if (query.isEmpty()) return@LaunchedEffect
         viewModel.searchMediaPaging()
+        lazyGridState.scrollToItem(0)
     }
 
     SearchScreen(
         query = query,
         pagingItem = pagingItem,
+        lazyGridState = lazyGridState,
         onValueChange = {
             viewModel.setQuery(it)
         },
@@ -49,6 +55,7 @@ fun SearchScreen(
 fun SearchScreen(
     query: String,
     pagingItem: LazyPagingItems<Media>,
+    lazyGridState: LazyGridState = rememberLazyGridState(),
     onValueChange: (String) -> Unit = {},
     onClickCard: (Media) -> Unit = {},
     modifier: Modifier = Modifier
@@ -64,6 +71,7 @@ fun SearchScreen(
 
         MediaLazyVerticalGrid(
             pagingItem = pagingItem,
+            lazyGridState = lazyGridState,
             onClickCard = onClickCard,
             modifier = Modifier
         )
