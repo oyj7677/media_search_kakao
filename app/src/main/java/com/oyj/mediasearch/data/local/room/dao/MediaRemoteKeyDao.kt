@@ -4,26 +4,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.oyj.mediasearch.data.local.room.entity.MediaImageRemoteKeyEntity
-import com.oyj.mediasearch.data.local.room.entity.MediaVideoRemoteKeyEntity
+import com.oyj.mediasearch.data.local.room.entity.MediaRemoteKeyEntity
 
 @Dao
 interface MediaRemoteKeyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMediaImageRemoteKeyList(remoteKeys: List<MediaImageRemoteKeyEntity>)
+    suspend fun insertMediaRemoteKeyList(remoteKeys: List<MediaRemoteKeyEntity>)
 
-    @Query("SELECT * FROM MediaImageRemoteKeyEntity WHERE id = :id")
-    suspend fun getMediaImageRemoteKey(id: Long): MediaImageRemoteKeyEntity
+    @Query("SELECT * FROM MediaRemoteKeyEntity WHERE id = :id")
+    suspend fun getMediaRemoteKey(id: Long): MediaRemoteKeyEntity
 
-    @Query("DELETE FROM MediaImageRemoteKeyEntity")
-    suspend fun clearMediaImageRemoteKeys()
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMediaVideoRemoteKeyList(remoteKeys: List<MediaVideoRemoteKeyEntity>)
-
-    @Query("SELECT * FROM MediaVideoRemoteKeyEntity WHERE id = :id")
-    suspend fun getMediaVideoRemoteKey(id: Long): MediaVideoRemoteKeyEntity
-
-    @Query("DELETE FROM MediaVideoRemoteKeyEntity")
-    suspend fun clearMediaVideoRemoteKeys()
+    @Query("DELETE FROM MediaRemoteKeyEntity")
+    suspend fun clearMediaRemoteKeys()
 }

@@ -6,19 +6,16 @@ import com.oyj.mediasearch.data.MediaCategory
 import com.oyj.mediasearch.domain.model.Media
 import com.oyj.mediasearch.data.local.room.entity.MediaEntity
 import com.oyj.mediasearch.data.local.room.view.MediaWithBookmarkView
-import com.oyj.mediasearch.data.local.room.entity.MediaImageRemoteKeyEntity
-import com.oyj.mediasearch.data.local.room.entity.MediaVideoRemoteKeyEntity
+import com.oyj.mediasearch.data.local.room.entity.MediaRemoteKeyEntity
 
 interface MediaLocalDataSource {
     suspend fun clearMedia()
     suspend fun insertMediaList(mediaList: List<MediaEntity>)
     fun getMediaView(): PagingSource<Int, MediaWithBookmarkView>
     suspend fun getBookmarkedMedia(): PagingSource<Int, MediaEntity>
-    suspend fun insertImageRemoteKeyList(remoteKeys: List<MediaImageRemoteKeyEntity>)
-    suspend fun insertVideoRemoteKeyList(remoteKeys: List<MediaVideoRemoteKeyEntity>)
-    suspend fun getMediaImageRemoteKey(id: Long): MediaImageRemoteKeyEntity
-    suspend fun getMediaVideoRemoteKey(id: Long): MediaVideoRemoteKeyEntity
-    suspend fun clearMediaRemoteKeys(category: MediaCategory)
+    suspend fun insertRemoteKeyList(remoteKeys: List<MediaRemoteKeyEntity>)
+    suspend fun getMediaRemoteKey(id: Long): MediaRemoteKeyEntity
+    suspend fun clearMediaRemoteKeys()
 
     suspend fun saveMediaAndKeys(
         mediaList: List<Media>,
