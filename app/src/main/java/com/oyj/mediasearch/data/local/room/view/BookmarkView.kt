@@ -1,9 +1,6 @@
 package com.oyj.mediasearch.data.local.room.view
 
 import androidx.room.DatabaseView
-import com.oyj.mediasearch.domain.model.MediaImage
-import com.oyj.mediasearch.domain.model.MediaVideo
-import com.oyj.mediasearch.domain.model.Media
 
 @DatabaseView(
     viewName = "media_with_bookmark_view",
@@ -36,26 +33,3 @@ data class MediaWithBookmarkView(
     val playTime: Int,
     val isBookmark: Boolean
 )
-
-fun MediaWithBookmarkView.toMedia(): Media {
-    return if (title == null) {
-        MediaImage(
-            thumbnail = thumbnail,
-            dateTime = dateTime,
-            mediaUrl = mediaUrl,
-            sources = sources,
-            imgUrl = imgUrl ?: "",
-            isBookmark = isBookmark
-        )
-    } else {
-        MediaVideo(
-            thumbnail = thumbnail,
-            dateTime = dateTime,
-            mediaUrl = mediaUrl,
-            sources = sources,
-            isBookmark = isBookmark,
-            title = title,
-            playTime = playTime
-        )
-    }
-}
